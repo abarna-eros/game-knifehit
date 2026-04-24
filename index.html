@@ -14,7 +14,7 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{height:100%;overflow:hidden;touch-action:none}
-/* Outer: deep teal page; #game-shell: same family + soft depth (Level Complete reference) */
+/* Page frame (letterbox); game canvas + #game-shell = black playfield */
 body{
   background:#004d5a;
   display:flex;
@@ -31,15 +31,15 @@ body{
   width:min(calc(100vw - 12px), calc((100dvh - 12px) * 9 / 16));
   max-width:720px;
   aspect-ratio:9 / 16;
-  background:#004d5a;
+  background:#000000;
   flex-shrink:0;
   overflow:hidden;
   border-radius:16px;
   box-shadow:
-    0 0 0 1px rgba(0,0,0,0.2),
-    0 8px 32px rgba(0,0,0,0.35),
-    0 24px 64px rgba(0,0,0,0.4),
-    inset 0 1px 0 rgba(255,255,255,0.06);
+    0 0 0 1px rgba(0,0,0,0.45),
+    0 8px 32px rgba(0,0,0,0.5),
+    0 24px 64px rgba(0,0,0,0.55),
+    inset 0 1px 0 rgba(255,255,255,0.04);
 }
 #game-shell canvas{display:block;width:100%!important;height:100%!important}
 #err{
@@ -67,9 +67,9 @@ window.onerror=function(msg,url,line,col,err){
 };
 const GW = 720, GH = 1280;
 
-/* UI ref: page #004d5a · panel #151b26 · title #00e676 · primary btn #e91e63 · secondary #5c6bc0 · stars #ffca28 */
+/* Black playfield; panels #151b26; accents unchanged */
 const C = {
-  bg:0x004d5a, surface:0x151b26, border:0x1c2431, borderLt:0x2a3545,
+  bg:0x000000, surface:0x151b26, border:0x1c2431, borderLt:0x2a3545,
   primary:0x5c6bc0, accent:0xe91e63, gold:0xffca28, success:0x00e676,
   danger:0xed4245, text:0xe8eaf0, subtext:0x94a3b8,
   wood:0x8B5E3C, woodDark:0x5C3A1E, woodLight:0xA67C52,
@@ -671,7 +671,7 @@ if(!gameShell){
 
 const config={
   type:Phaser.AUTO,width:GW,height:GH,parent:gameShell,
-  backgroundColor:'#004d5a',
+  backgroundColor:'#000000',
   scale:{mode:Phaser.Scale.FIT,autoCenter:Phaser.Scale.CENTER_BOTH},
   scene:[BootScene,MenuScene,GameScene,GameOverScene],
   input:{activePointers:3},render:{antialias:true,pixelArt:false},
